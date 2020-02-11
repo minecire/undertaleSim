@@ -7,7 +7,7 @@ var interval = setInterval(runFrame, 1000/60);
 var width = window.innerWidth;
 var height = window.innerHeight;
 
-
+var soulState = "redSoul";
 var gameState = "Select";
 //game data
 var hp = 80; //health
@@ -23,17 +23,46 @@ var fightBarWait = 0; //delay after stopping fight bar before battle starts
 var soulX = 0; //Where is the soul in the battle?
 var soulY = 0;
 
+class OBEvent{
+    constructor(t, tp, x, y, dir, otp){
+        this.time = t;
+        this.type = tp;
+        this.x = x;
+        this.y = y;
+        this.direction = dir;
+        this.objectType = otp;
+    }
+}
+class CBEvent{
+    constructor(t, tp, c){
+        this.time = t;
+        this.type = tp;
+        this.color = c;
+    }
+}
+class EBEvent{
+    constructor(t, tp){
+        this.time = t;
+        this.type = tp;
+    }
+}
+
 class Battle {
-    constructor(len, w, h){
-        this.length = len;
+    constructor(w, h, evs){
         this.width = w;
         this.height = h;
+        this.events = evs
     }
 }
 
 var battles = [];
 var battleIndex = 0;
-battles.push(new Battle(800, 0.4, 0.2));
+var eventStore = [];
+var eventIndex = 0;
+eventStore.push(new OBEvent(400, "Object", 0, 0, 0, "Bone"));
+eventStore.push(new CBEvent(600, "Color", "blueSoul"));
+eventStore.push(new EBEvent(800, "End"));
+battles.push(new Battle(0.4, 0.2, eventStore));
 
 var battleTime = 0;
 
@@ -166,6 +195,7 @@ function zPress(){ //z key pressed
             gameState = "Fight";
             fightBarMoving = true;
             fightBarWait = 0;
+            fightBarPos = 0;
         }
         else if(soulMenuPos == 1){
             gameState = "Act";
@@ -190,7 +220,7 @@ function cPress(){ //c key presed
 function selectScreen(){//draw stuff unique to select screen
 
     //Draw soul in menu
-    ctx.drawImage(document.getElementById("redSoul"), width*0.21+soulMenuPos*width*0.1575, height*0.873,height*0.02,height*0.02);
+    ctx.drawImage(document.getElementById(soulState), width*0.21+soulMenuPos*width*0.1575, height*0.873,height*0.02,height*0.02);
 
 
     hollowBox(0.2,0.6,0.6,0.2,0.01,"#FFFFFF", "", 0); //Draw a hollow box for text or something in white in around the right place
@@ -215,6 +245,7 @@ function fightScreen(){//draw stuff unique to fight screen
         if(fightBarWait >= 20){
             gameState = "Avoid";
             battleTime = 0;
+            eventIndex = 0;
         }
     }
 
@@ -225,40 +256,84 @@ function fightScreen(){//draw stuff unique to fight screen
         if(fightBarPos >= 0.6){
             gameState = "Avoid";
             battleTime = 0;
+            eventIndex = 0;
         }
     }
 }
 
 function avoidScreen(){
     fightBox(0.5,0.7,battles[battleIndex].width,battles[battleIndex].height,0.01,"#FFFFFF", "", 0);
-    ctx.drawImage(document.getElementById("redSoul"), width*0.5-height*0.015+soulX*height, height*0.685+soulY*height, height*0.02, height*0.02);
+    ctx.drawImage(document.getElementById(soulState), width*0.5-height*0.015+soulX*height, height*0.685+soulY*height, height*0.02, height*0.02);
     battleTime++;
-    if(battleTime > battles[battleIndex].length){
-        gameState = "Select";
-        battleIndex++;
+    moveSoul(soulState);
+    if(battles[battleIndex].events[eventIndex].time == battleTime){
+        var currentEvent = battles[battleIndex].events[eventIndex];
+        if(currentEvent.type == "Color"){
+            soulState = currentEvent.color;
+        }
+        if(currentEvent.type == "End"){
+            gameState = "Select";
+            battleIndex++;
+        }
+
+        eventIndex++;
     }
-    if(upPressed){
-        soulY -= 0.003;
-        if(soulY < -battles[battleIndex].height/2+0.023){
-            soulY = -battles[battleIndex].height/2+0.023;
+}
+
+var blueSAcc = 0;
+function moveSoul(state){
+    if(state == "redSoul"){
+        if(upPressed){
+            soulY -= 0.003;
+            if(soulY < -battles[battleIndex].height/2+0.023){
+                soulY = -battles[battleIndex].height/2+0.023;
+            }
+        }
+        if(downPressed){
+            soulY += 0.003;
+            if(soulY > battles[battleIndex].height/2-0.017){
+                soulY = battles[battleIndex].height/2-0.017;
+            }
+        }
+        if(leftPressed){
+            soulX -= 0.003;
+            if(soulX < -battles[battleIndex].width/2+0.024){
+                soulX = -battles[battleIndex].width/2+0.024;
+            }
+        }
+        if(rightPressed){
+            soulX += 0.003;
+            if(soulX > battles[battleIndex].width/2-0.016){
+                soulX = battles[battleIndex].width/2-0.016;
+            }
         }
     }
-    if(downPressed){
-        soulY += 0.003;
+    if(state == "blueSoul"){
+        if(leftPressed){
+            soulX -= 0.003;
+            if(soulX < -battles[battleIndex].width/2+0.024){
+                soulX = -battles[battleIndex].width/2+0.024;
+            }
+        }
+        if(rightPressed){
+            soulX += 0.003;
+            if(soulX > battles[battleIndex].width/2-0.016){
+                soulX = battles[battleIndex].width/2-0.016;
+            }
+        }
+        
+        soulY -= blueSAcc;
+        blueSAcc -= 0.001;
         if(soulY > battles[battleIndex].height/2-0.017){
             soulY = battles[battleIndex].height/2-0.017;
+            blueSAcc = 0;
         }
-    }
-    if(leftPressed){
-        soulX -= 0.003;
-        if(soulX < -battles[battleIndex].width/2+0.024){
-            soulX = -battles[battleIndex].width/2+0.024;
+        if(soulY < -battles[battleIndex].height/2+0.017){
+            soulY = -battles[battleIndex].height/2+0.017;
+            blueSAcc = 0;
         }
-    }
-    if(rightPressed){
-        soulX += 0.003;
-        if(soulX > battles[battleIndex].width/2-0.016){
-            soulX = battles[battleIndex].width/2-0.016;
+        if(upPressed && blueSAcc == 0){
+            blueSAcc = 0.015;
         }
     }
 }
