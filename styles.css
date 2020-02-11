@@ -1,0 +1,23 @@
+body {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    overflow:hidden;
+}
+html {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+img{
+    display:none;
+}
+
+@font-face {
+    font-family: 'sansundertale';
+    src: url("resources/fonts/undertalesans-webfont.ttf");
+}
+@font-face {
+    font-family: 'undertale';
+    src: url("resources/fonts/determinationmonoweb-webfont.ttf");
+}
