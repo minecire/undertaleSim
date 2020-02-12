@@ -18,14 +18,14 @@ function moveSoul(state){
         }
         if(leftPressed){
             soulX -= 0.003;
-            if(soulX < -battles[battleIndex].width/2+0.024){
-                soulX = -battles[battleIndex].width/2+0.024;
+            if(soulX < -battles[battleIndex].width/2+0.01){
+                soulX = -battles[battleIndex].width/2+0.01;
             }
         }
         if(rightPressed){
             soulX += 0.003;
-            if(soulX > battles[battleIndex].width/2-0.016){
-                soulX = battles[battleIndex].width/2-0.016;
+            if(soulX > battles[battleIndex].width/2-0.03){
+                soulX = battles[battleIndex].width/2-0.03;
             }
         }
     }

@@ -58,7 +58,7 @@ var battleIndex = 0;
 var eventStore = [];
 var objectStore = [];
 var eventIndex = 0;
-eventStore.push(new OBEvent(400, "Object", new object(0.4, 0.6, 0.003, 0, 0.1, 0, "bone1", 500)));
+eventStore.push(new OBEvent(1, "Object", new object(-0.1, 0, 0.0006, 0, 0.1, 0, "bone1", 500)));
 eventStore.push(new CBEvent(600, "Color", "blueSoul"));
 eventStore.push(new EBEvent(800, "End"));
 battles.push(new Battle(0.4, 0.2, eventStore));
@@ -263,11 +263,10 @@ function fightScreen(){//draw stuff unique to fight screen
 
 function avoidScreen(){
     fightBox(0.5,0.7,battles[battleIndex].width,battles[battleIndex].height,0.01,"#FFFFFF", "", 0);
-    ctx.drawImage(document.getElementById(soulState), width*0.5-height*0.015+soulX*height, height*0.685+soulY*height, height*0.02, height*0.02);
+    ctx.drawImage(document.getElementById(soulState), width*0.5+soulX*height, height*0.685+soulY*height, height*0.02, height*0.02);
     battleTime++;
     moveSoul(soulState);
     for(var i = 0; i < objectStore.length; i++){
-        console.log(objectStore[i]);
         if(doObject(objectStore[i])){
             objectStore.splice(i,1);
         }
@@ -286,4 +285,15 @@ function avoidScreen(){
         }
         eventIndex++;
     }
+}
+
+
+function collide(x1, y1, w1, h1, x2, y2, w2, h2){
+    if((x1 < x2+w2)&&
+    (x1+w1 > x2)&&
+    (y1 < y2+h2)&&
+    (y1+h1 > y2)){
+        return true;
+    }
+    return false;
 }
