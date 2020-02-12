@@ -23,14 +23,6 @@ var fightBarWait = 0; //delay after stopping fight bar before battle starts
 var soulX = 0; //Where is the soul in the battle?
 var soulY = 0;
 
-class object{
-    constructor(x,y,dir,otp){
-        this.x = x;
-        this.y = y;
-        this.direction = dir;
-        this.objectType = otp;
-    }
-}
 
 class OBEvent{
     constructor(t, tp, obj){
@@ -264,6 +256,7 @@ function fightScreen(){//draw stuff unique to fight screen
             gameState = "Avoid";
             battleTime = 0;
             eventIndex = 0;
+            objectStore = [];
         }
     }
 }
@@ -273,6 +266,9 @@ function avoidScreen(){
     ctx.drawImage(document.getElementById(soulState), width*0.5-height*0.015+soulX*height, height*0.685+soulY*height, height*0.02, height*0.02);
     battleTime++;
     moveSoul(soulState);
+    for(var i = 0; i < objectStore.length; i++){
+        doObject(objectStore[i]);
+    }
     if(battles[battleIndex].events[eventIndex].time == battleTime){
         var currentEvent = battles[battleIndex].events[eventIndex];
         if(currentEvent.type == "Color"){
@@ -282,7 +278,7 @@ function avoidScreen(){
             gameState = "Select";
             battleIndex++;
         }
-        if(currentEvent.type = "Object"){
+        if(currentEvent.type == "Object"){
             objectStore.push(currentEvent.object);
         }
         eventIndex++;

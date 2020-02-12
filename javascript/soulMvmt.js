@@ -44,7 +44,7 @@ function moveSoul(state){
         }
         
         soulY -= blueSAcc;
-        blueSAcc -= 0.001;
+        blueSAcc -= 0.0003;
         if(soulY > battles[battleIndex].height/2-0.017){
             soulY = battles[battleIndex].height/2-0.017;
             blueSAcc = 0;
@@ -54,7 +54,7 @@ function moveSoul(state){
             blueSAcc = 0;
         }
         if(upPressed && blueSAcc == 0){
-            blueSAcc = 0.015;
+            blueSAcc = 0.008;
         }
     }
 }
