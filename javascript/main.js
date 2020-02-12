@@ -10,8 +10,8 @@ var height = window.innerHeight;
 var soulState = "redSoul";
 var gameState = "Select";
 //game data
-var hp = 80; //health
-var karma = 0; //karma
+var hp = 70; //health
+var karma = 18; //karma
 var soulMenuPos = 0; //Where is the soul on the menu?
 var soulSubMenuPos = 0; //Where is the soul in a sub-menu?
 
@@ -23,14 +23,20 @@ var fightBarWait = 0; //delay after stopping fight bar before battle starts
 var soulX = 0; //Where is the soul in the battle?
 var soulY = 0;
 
-class OBEvent{
-    constructor(t, tp, x, y, dir, otp){
-        this.time = t;
-        this.type = tp;
+class object{
+    constructor(x,y,dir,otp){
         this.x = x;
         this.y = y;
         this.direction = dir;
         this.objectType = otp;
+    }
+}
+
+class OBEvent{
+    constructor(t, tp, obj){
+        this.time = t;
+        this.type = tp;
+        this.object = obj;
     }
 }
 class CBEvent{
@@ -58,8 +64,9 @@ class Battle {
 var battles = [];
 var battleIndex = 0;
 var eventStore = [];
+var objectStore = [];
 var eventIndex = 0;
-eventStore.push(new OBEvent(400, "Object", 0, 0, 0, "Bone"));
+eventStore.push(new OBEvent(400, "Object", new object(0, 0, 0, "bone1")));
 eventStore.push(new CBEvent(600, "Color", "blueSoul"));
 eventStore.push(new EBEvent(800, "End"));
 battles.push(new Battle(0.4, 0.2, eventStore));
@@ -275,65 +282,9 @@ function avoidScreen(){
             gameState = "Select";
             battleIndex++;
         }
-
+        if(currentEvent.type = "Object"){
+            objectStore.push(currentEvent.object);
+        }
         eventIndex++;
-    }
-}
-
-var blueSAcc = 0;
-function moveSoul(state){
-    if(state == "redSoul"){
-        if(upPressed){
-            soulY -= 0.003;
-            if(soulY < -battles[battleIndex].height/2+0.023){
-                soulY = -battles[battleIndex].height/2+0.023;
-            }
-        }
-        if(downPressed){
-            soulY += 0.003;
-            if(soulY > battles[battleIndex].height/2-0.017){
-                soulY = battles[battleIndex].height/2-0.017;
-            }
-        }
-        if(leftPressed){
-            soulX -= 0.003;
-            if(soulX < -battles[battleIndex].width/2+0.024){
-                soulX = -battles[battleIndex].width/2+0.024;
-            }
-        }
-        if(rightPressed){
-            soulX += 0.003;
-            if(soulX > battles[battleIndex].width/2-0.016){
-                soulX = battles[battleIndex].width/2-0.016;
-            }
-        }
-    }
-    if(state == "blueSoul"){
-        if(leftPressed){
-            soulX -= 0.003;
-            if(soulX < -battles[battleIndex].width/2+0.024){
-                soulX = -battles[battleIndex].width/2+0.024;
-            }
-        }
-        if(rightPressed){
-            soulX += 0.003;
-            if(soulX > battles[battleIndex].width/2-0.016){
-                soulX = battles[battleIndex].width/2-0.016;
-            }
-        }
-        
-        soulY -= blueSAcc;
-        blueSAcc -= 0.001;
-        if(soulY > battles[battleIndex].height/2-0.017){
-            soulY = battles[battleIndex].height/2-0.017;
-            blueSAcc = 0;
-        }
-        if(soulY < -battles[battleIndex].height/2+0.017){
-            soulY = -battles[battleIndex].height/2+0.017;
-            blueSAcc = 0;
-        }
-        if(upPressed && blueSAcc == 0){
-            blueSAcc = 0.015;
-        }
     }
 }
