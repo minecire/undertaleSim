@@ -58,7 +58,7 @@ var battleIndex = 0;
 var eventStore = [];
 var objectStore = [];
 var eventIndex = 0;
-eventStore.push(new OBEvent(400, "Object", new object(0, 0, 0, "bone1")));
+eventStore.push(new OBEvent(400, "Object", new object(0.4, 0.6, 0.003, 0, 0.1, 0, "bone1", 500)));
 eventStore.push(new CBEvent(600, "Color", "blueSoul"));
 eventStore.push(new EBEvent(800, "End"));
 battles.push(new Battle(0.4, 0.2, eventStore));
@@ -267,7 +267,10 @@ function avoidScreen(){
     battleTime++;
     moveSoul(soulState);
     for(var i = 0; i < objectStore.length; i++){
-        doObject(objectStore[i]);
+        console.log(objectStore[i]);
+        if(doObject(objectStore[i])){
+            objectStore.splice(i,1);
+        }
     }
     if(battles[battleIndex].events[eventIndex].time == battleTime){
         var currentEvent = battles[battleIndex].events[eventIndex];
