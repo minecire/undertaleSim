@@ -10,8 +10,8 @@ var height = window.innerHeight;
 var soulState = "redSoul";
 var gameState = "Select";
 //game data
-var hp = 70; //health
-var karma = 18; //karma
+var hp = 92; //health
+var karma = 0; //karma
 var soulMenuPos = 0; //Where is the soul on the menu?
 var soulSubMenuPos = 0; //Where is the soul in a sub-menu?
 
@@ -24,44 +24,10 @@ var soulX = 0; //Where is the soul in the battle?
 var soulY = 0;
 
 
-class OBEvent{
-    constructor(t, tp, obj){
-        this.time = t;
-        this.type = tp;
-        this.object = obj;
-    }
-}
-class CBEvent{
-    constructor(t, tp, c){
-        this.time = t;
-        this.type = tp;
-        this.color = c;
-    }
-}
-class EBEvent{
-    constructor(t, tp){
-        this.time = t;
-        this.type = tp;
-    }
-}
 
-class Battle {
-    constructor(w, h, evs){
-        this.width = w;
-        this.height = h;
-        this.events = evs
-    }
-}
-
-var battles = [];
 var battleIndex = 0;
-var eventStore = [];
 var objectStore = [];
 var eventIndex = 0;
-eventStore.push(new OBEvent(1, "Object", new object(-0.1, 0, 0.0006, 0, 0.1, 0, "bone1", 500)));
-eventStore.push(new CBEvent(600, "Color", "blueSoul"));
-eventStore.push(new EBEvent(800, "End"));
-battles.push(new Battle(0.4, 0.2, eventStore));
 
 var battleTime = 0;
 
