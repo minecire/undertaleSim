@@ -8,4 +8,4 @@ On pages at https://minecire.github.io/undertaleSim
 Fonts taken from (Thank You):
 https://gitlab.com/cartr/undertale-fonts
 
-v. Alpha 2
+v. Beta 1
