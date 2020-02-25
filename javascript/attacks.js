@@ -51,13 +51,13 @@ eventStore.push(new OBEvent(101, "Object", new object(-0.2, 0.08, 0.002, 0, 0.02
 eventStore.push(new OBEvent(102, "Object", new object(0.2, -0.08, -0.002, 0, 0.16, 0, "bone1", 282)));
 eventStore.push(new OBEvent(151, "Object", new object(-0.2, 0.08, 0.002, 0, 0.023, 0, "bone1", 331)));
 eventStore.push(new OBEvent(152, "Object", new object(0.2, -0.08, -0.002, 0, 0.16, 0, "bone1", 332)));
-eventStore.push(new OBEvent(201, "Object", new object(-0.2, 0.08, 0.002, 0, 0.023, 0, "bone1", 481)));
-eventStore.push(new OBEvent(202, "Object", new object(0.2, -0.08, -0.002, 0, 0.16, 0, "bone1", 482)));
-eventStore.push(new OBEvent(251, "Object", new object(-0.2, 0.08, 0.002, 0, 0.023, 0, "bone1", 531)));
-eventStore.push(new OBEvent(252, "Object", new object(0.2, -0.08, -0.002, 0, 0.16, 0, "bone1", 532)));
-eventStore.push(new OBEvent(301, "Object", new object(-0.2, 0.08, 0.002, 0, 0.023, 0, "bone1", 581)));
-eventStore.push(new OBEvent(302, "Object", new object(0.2, -0.08, -0.002, 0, 0.16, 0, "bone1", 582)));
-eventStore.push(new OBEvent(351, "Object", new object(-0.2, 0.08, 0.002, 0, 0.023, 0, "bone1", 631)));
-eventStore.push(new OBEvent(352, "Object", new object(0.2, -0.08, -0.002, 0, 0.16, 0, "bone1", 632)));
+eventStore.push(new OBEvent(201, "Object", new object(-0.2, 0.08, 0.002, 0, 0.023, 0, "bone1", 381)));
+eventStore.push(new OBEvent(202, "Object", new object(0.2, -0.08, -0.002, 0, 0.16, 0, "bone1", 382)));
+eventStore.push(new OBEvent(251, "Object", new object(-0.2, 0.08, 0.002, 0, 0.023, 0, "bone1", 431)));
+eventStore.push(new OBEvent(252, "Object", new object(0.2, -0.08, -0.002, 0, 0.16, 0, "bone1", 432)));
+eventStore.push(new OBEvent(301, "Object", new object(-0.2, 0.08, 0.002, 0, 0.023, 0, "bone1", 481)));
+eventStore.push(new OBEvent(302, "Object", new object(0.2, -0.08, -0.002, 0, 0.16, 0, "bone1", 482)));
+eventStore.push(new OBEvent(351, "Object", new object(-0.2, 0.08, 0.002, 0, 0.023, 0, "bone1", 531)));
+eventStore.push(new OBEvent(352, "Object", new object(0.2, -0.08, -0.002, 0, 0.16, 0, "bone1", 532)));
 eventStore.push(new EBEvent(650, "End"));
 battles.push(new Battle(0.4,0.2,eventStore)); //battle 2

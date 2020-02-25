@@ -126,7 +126,15 @@ function runFrame(){
     if(gameState == "Avoid"){
         avoidScreen();
     }
-
+    if(gameState == "Act"){
+        actScreen();
+    }
+    if(gameState == "Item"){
+        itemScreen();
+    }
+    if(gameState == "Mercy"){
+        mercyScreen();
+    }
 }
 
 function hollowBox(x,y,w,h,t,color,text,textSize){
@@ -253,6 +261,9 @@ function avoidScreen(){
     }
 }
 
+function actScreen(){
+    
+}
 
 function collide(x1, y1, w1, h1, x2, y2, w2, h2){
     if((x1 < x2+w2)&&
