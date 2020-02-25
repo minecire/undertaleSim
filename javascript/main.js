@@ -2,7 +2,7 @@
 var game = document.getElementById("game");
 var ctx = game.getContext("2d");
 //runs the runFrame function every frame
-var interval = setInterval(runFrame, 1000/60);
+var interval = setInterval(runFrame, 1000/50);
 //create a variable to set to window width and height
 var width = window.innerWidth;
 var height = window.innerHeight;
@@ -23,7 +23,7 @@ var fightBarWait = 0; //delay after stopping fight bar before battle starts
 var soulX = 0; //Where is the soul in the battle?
 var soulY = 0;
 
-
+var krFrame = 0;
 
 var battleIndex = 0;
 var objectStore = [];
@@ -80,7 +80,13 @@ document.addEventListener("keyup", function(e){
 })
 
 function runFrame(){
-
+    krFrame++;
+    if(krFrame >= 30){
+        krFrame = 0;
+        if(karma > 0){
+            karma--;
+        }
+    }
     //reset width and height variables in case window size changed
     width = window.innerWidth;
     height = window.innerHeight;
@@ -102,8 +108,10 @@ function runFrame(){
     //Draw Health Bar
     ctx.fillStyle = "#FFFF00";
     ctx.fillRect(width*0.5,height*0.81, width*0.1*hp/92, height*0.03);
+    ctx.fillStyle = "#FF00FF";
+    ctx.fillRect(width*0.5+width*0.1*hp/92,height*0.81,width*0.1*karma/92, height*0.03);
     ctx.fillStyle = "#FF0000";
-    ctx.fillRect(width*0.5+width*0.1*hp/92,height*0.81,width*0.1*(1-hp/92),height*0.03);
+    ctx.fillRect(width*0.5+width*0.1*(hp+karma)/92,height*0.81,width*0.1*(1-(hp+karma)/92),height*0.03);
 
     //Text on bottom bar
     ctx.fillStyle = "#FFFFFF";
@@ -112,7 +120,7 @@ function runFrame(){
     ctx.font = 0.04*height+"px undertale";
     ctx.fillText("CHARA", width*0.2, height*0.805);
     ctx.fillText("LV 19", width*0.3, height*0.805);
-    ctx.fillText(hp + "/92", width*0.63, height*0.805);
+    ctx.fillText((hp+karma) + "/92", width*0.63, height*0.805);
     ctx.font = 0.02*height+"px undertale";
     ctx.fillText("HP", width*0.48, height*0.815);
     ctx.fillText("KR", width*0.605, height*0.815);

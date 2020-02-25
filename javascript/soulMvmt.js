@@ -1,5 +1,6 @@
 //variables for soul movement
 var blueSAcc = 0;
+var holdFrames = 0;
 
 
 function moveSoul(state){
@@ -44,7 +45,7 @@ function moveSoul(state){
         }
         
         soulY -= blueSAcc;
-        blueSAcc -= 0.0003;
+        blueSAcc -= 0.00051;
         if(soulY > battles[battleIndex].height/2-0.017){
             soulY = battles[battleIndex].height/2-0.017;
             blueSAcc = 0;
@@ -54,7 +55,15 @@ function moveSoul(state){
             blueSAcc = 0;
         }
         if(upPressed && blueSAcc == 0){
-            blueSAcc = 0.008;
+            blueSAcc = 0.005;
+            holdFrames = 13;
+        }
+        else if(upPressed && holdFrames > 0){
+            blueSAcc = 0.005;
+            holdFrames--;
+        }
+        else{
+            holdFrames = 0;
         }
     }
 }
