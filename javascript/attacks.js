@@ -64,19 +64,19 @@ battles.push(new Battle(0.4,0.2,eventStore)); //battle 2
 
 eventStore = [];
 
-eventStore.push(new OBEvent(1, "Object", new object(-0.125, 0.08, 0.006, 0, 0.023, 0, "bone1", 46)));
-eventStore.push(new OBEvent(16, "Object", new object(-0.125, -0.06, 0.006, 0, 0.163, 0, "blueBone1", 61)));
-eventStore.push(new OBEvent(51, "Object", new object(-0.125, 0.08, 0.006, 0, 0.023, 0, "bone1", 96)));
-eventStore.push(new OBEvent(66, "Object", new object(-0.125, -0.06, 0.006, 0, 0.163, 0, "blueBone1", 111)));
-eventStore.push(new OBEvent(101, "Object", new object(-0.125, 0.08, 0.006, 0, 0.023, 0, "bone1", 146)));
-eventStore.push(new OBEvent(116, "Object", new object(-0.125, -0.06, 0.006, 0, 0.163, 0, "blueBone1", 161)));
+eventStore.push(new OBEvent(1, "Object", new object(-0.25, 0.08, 0.012, 0, 0.023, 0, "bone1", 46)));
+eventStore.push(new OBEvent(16, "Object", new object(-0.25, -0.06, 0.012, 0, 0.163, 0, "blueBone1", 61)));
+eventStore.push(new OBEvent(51, "Object", new object(-0.25, 0.08, 0.012, 0, 0.023, 0, "bone1", 96)));
+eventStore.push(new OBEvent(66, "Object", new object(-0.25, -0.06, 0.012, 0, 0.163, 0, "blueBone1", 111)));
+eventStore.push(new OBEvent(101, "Object", new object(-0.25, 0.08, 0.012, 0, 0.023, 0, "bone1", 146)));
+eventStore.push(new OBEvent(116, "Object", new object(-0.25, -0.06, 0.012, 0, 0.163, 0, "blueBone1", 161)));
 
-eventStore.push(new OBEvent(151, "Object", new object(0.125, 0.08, -0.006, 0, 0.023, 0, "bone1", 196)));
-eventStore.push(new OBEvent(166, "Object", new object(0.125, -0.06, -0.006, 0, 0.163, 0, "blueBone1", 211)));
-eventStore.push(new OBEvent(201, "Object", new object(0.125, 0.08, -0.006, 0, 0.023, 0, "bone1", 246)));
-eventStore.push(new OBEvent(216, "Object", new object(0.125, -0.06, -0.006, 0, 0.163, 0, "blueBone1", 261)));
-eventStore.push(new OBEvent(251, "Object", new object(0.125, 0.08, -0.006, 0, 0.023, 0, "bone1", 296)));
-eventStore.push(new OBEvent(266, "Object", new object(0.125, -0.06, -0.006, 0, 0.163, 0, "blueBone1", 311)));
+eventStore.push(new OBEvent(151, "Object", new object(0.25, 0.08, -0.012, 0, 0.023, 0, "bone1", 196)));
+eventStore.push(new OBEvent(166, "Object", new object(0.25, -0.06, -0.012, 0, 0.163, 0, "blueBone1", 211)));
+eventStore.push(new OBEvent(201, "Object", new object(0.25, 0.08, -0.012, 0, 0.023, 0, "bone1", 246)));
+eventStore.push(new OBEvent(216, "Object", new object(0.25, -0.06, -0.012, 0, 0.163, 0, "blueBone1", 261)));
+eventStore.push(new OBEvent(251, "Object", new object(0.25, 0.08, -0.012, 0, 0.023, 0, "bone1", 296)));
+eventStore.push(new OBEvent(266, "Object", new object(0.25, -0.06, -0.012, 0, 0.163, 0, "blueBone1", 311)));
 
 eventStore.push(new EBEvent(320, "End"));
-battles.push(new Battle(0.25, 0.2, eventStore));
+battles.push(new Battle(0.5, 0.2, eventStore));

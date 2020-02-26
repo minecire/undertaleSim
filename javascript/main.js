@@ -270,7 +270,12 @@ function avoidScreen(){
 }
 
 function actScreen(){
-    
+    hollowBox(0.2,0.6,0.6,0.2,0.01,"#FFFFFF", "", 0); //Draw a hollow box for text or something in white in around the right place
+    ctx.font = height*0.04+"px undertale";
+    ctx.textAlign = "left";
+    for(var i = 0; (i < 6 && i < actions.length); i++){
+        ctx.fillText(actions[i].name, width*0.24+(i%2)*0.35*width, height*0.64+Math.floor(i/2)*0.06*height);
+    }
 }
 
 function collide(x1, y1, w1, h1, x2, y2, w2, h2){

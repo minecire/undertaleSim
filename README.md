@@ -1,6 +1,6 @@
 # undertaleSim
 Welcome to an Undertale Battle Simulator!
-There's not much here yet.
+I got some attacks and things, but not too much yet.
 
 On pages at https://minecire.github.io/undertaleSim
 
@@ -8,4 +8,4 @@ On pages at https://minecire.github.io/undertaleSim
 Fonts taken from (Thank You):
 https://gitlab.com/cartr/undertale-fonts
 
-v. Beta 1
+v. Beta 2
